@@ -1,7 +1,7 @@
 FROM alpine as build
 
 RUN apk update
-RUN apk add tar curl
+RUN apk add tar curl php7 php-fpm7
 
 RUN mkdir -p /data/dokuwiki
 RUN curl https://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz > /data/dokuwiki-stable.tgz
