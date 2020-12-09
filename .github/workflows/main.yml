@@ -26,21 +26,6 @@ jobs:
           msg: ${{ github.repository }}
           seperator: '/'
 
-      - name: Build and push Docker images
-        uses: docker/build-push-action@v1.1.0
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_SECRET }}
-          repository: necromant/${{ steps.split.outputs._1 }}-nginx
-          path: nginx/
-      - name: Build and push Docker images
-        uses: docker/build-push-action@v1.1.0
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_SECRET }}
-          repository: necromant/${{ steps.split.outputs._1 }}-php-fpm
-          path: php-fpm/
-
       - name: prepare deploy directory
         uses: appleboy/ssh-action@v0.0.9
         with:

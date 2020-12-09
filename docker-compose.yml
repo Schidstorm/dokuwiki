@@ -2,32 +2,22 @@ version: '3.5'
 
 services:
   dokuwiki-nginx:
-    image: necromant/dokuwiki-nginx
-    hostname: dokuwiki-nginx
-    depends_on:
-      - php-fpm
+    image: 'docker.io/bitnami/dokuwiki:20200729-debian-10'
+    volumes:
+      - dokuwiki_data:/bitnami/dokuwiki
     networks:
       - public
-      - private
 
-    restart: unless-stopped
-    deploy:
-      mode: replicated
-      replicas: 2
-
-  php-fpm:
-    image: necromant/dokuwiki-php-fpm
-    hostname: php-fpm
-    networks:
-      - private
-
+    hostname: dokuwiki-nginx
     restart: unless-stopped
     deploy:
       mode: replicated
       replicas: 1
-
+    
+volumes:
+  dokuwiki_data:
+    external: true
 
 networks:
   public:
     external: true
-  private:
