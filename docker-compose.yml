@@ -1,8 +1,9 @@
 version: '3.5'
 
 services:
-  nginx:
+  dokuwiki-nginx:
     image: necromant/dokuwiki-nginx
+    hostname: dokuwiki-nginx
     depends_on:
       - php-fpm
     networks:
@@ -16,8 +17,8 @@ services:
 
   php-fpm:
     image: necromant/dokuwiki-php-fpm
+    hostname: php-fpm
     networks:
-      - public
       - private
 
     restart: unless-stopped
