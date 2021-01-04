@@ -4,7 +4,7 @@ services:
   dokuwiki-nginx:
     image: 'docker.io/bitnami/dokuwiki:20200729-debian-10'
     volumes:
-      - dokuwiki_data:/bitnami/dokuwiki
+      - /bitnami/dokuwiki:/bitnami/dokuwiki
     networks:
       - public
 
@@ -13,10 +13,7 @@ services:
     deploy:
       mode: replicated
       replicas: 1
-    
-volumes:
-  dokuwiki_data:
-    external: true
+
 
 networks:
   public:

@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    app: dokuwiki
+  name: dokuwiki
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dokuwiki
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        app: dokuwiki
+    spec:
+      containers:
+      - image: docker.io/bitnami/dokuwiki:20200729-debian-10
+        imagePullPolicy: ""
+        name: dokuwiki
+        resources: {}
+        volumeMounts:
+        - mountPath: /bitnami/dokuwiki
+          name: dokuwiki-pvc
+      hostname: dokuwiki
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+      - name: dokuwiki-pvc
+        persistentVolumeClaim:
+          claimName: dokuwiki-pvc
+status: {}
