@@ -1,14 +1,16 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  creationTimestamp: null
-  labels:
-    io.kompose.service: dokuwiki-pvc
   name: dokuwiki-pvc
 spec:
   accessModes:
   - ReadWriteOnce
-  storageClassName: dokuwiki-sc
+  mountOptions:
+    - hard
+    - nfsvers=4.1
+  nfs:
+    path: /data/dokuwiki
+    server: 10.50.0.3
   resources:
     requests:
       storage: 1Gi

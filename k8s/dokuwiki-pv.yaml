@@ -9,7 +9,7 @@ spec:
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Recycle
-  storageClassName: dokuwiki-sc
+  storageClassName: 'dokuwiki'
   mountOptions:
     - hard
     - nfsvers=4.1
